@@ -95,6 +95,19 @@ td {
     border: 1px solid #bec0c562;
 }
 
+tfoot tr td {
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: #2f86d6;
+    padding: 15px 20px;
+    border: 1px solid #ffffff;
+}
+
+tfoot tr td a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
 .circulo {
     background-color: #2f86d6;
     width: 20px;
