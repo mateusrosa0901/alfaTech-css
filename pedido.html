@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alfa Tech | Pedido</title>
@@ -18,56 +19,132 @@
         </div>
         
         <ul class="menu-topo">
-            <li><a href="#informacoes">INFORMAÇÕES</a></li>
-            <li><a href="#planos">PLANOS</a></li>
+            <li><a href="index.html#informacoes">INFORMAÇÕES</a></li>
+            <li><a href="index.html#planos">PLANOS</a></li>
             <li><a href="index.html">HOME</a></li>
-            <li><a href="#contatos">CONTATO</a></li>
+            <li><a href="index.html#contatos">CONTATO</a></li>
         </ul>
     </header>
 
-    <div class="conta">
-        <h2>1. Conta</h2>
+    <h2>1. Conta</h2>
+    <div class="conta">    
         <form action="GET" class="conta-form">
             <input type="email" name="email" id="email" placeholder="Endereço de E-mail">
             <input type="password" name="password" id="password" placeholder="Senha">
         </form>
     </div>
 
+    <h2>2. Resumo</h2>
+    <div class="resumo">
+        
+        <div class="row">
+            <input type="text" name="cupom" id="cupom" placeholder="Insira um cupom">
+
+            <div class="column">
+                <h3>R$59,00</h3>
+                <p>Plano empresarial</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>2. Pagamento</h2>
     <div class="pagamento">
-        <h2>2. Pagamento</h2>
+        
         <form action="GET">
             <div class="radio">
-                <input type="radio" name="pagamento" id="pix">
+                <input type="radio" name="pagamento" id="pix-radio" value="pix">
                 <label for="pix">Pix</label>
             </div>
 
             <div class="radio">
-                <input type="radio" name="pagamento" id="cartao">
+                <input type="radio" name="pagamento" id="cartao-radio" value="cartao">
                 <label for="cartao">Cartão</label>
             </div>
 
             <div class="radio">
-                <input type="radio" name="pagamento" id="boleto">
+                <input type="radio" name="pagamento" id="boleto-radio" value="boleto">
                 <label for="boleto">Boleto</label>
             </div>
         </form>
 
-        <div class="pix dp-none">
+        <div class="pix dp-none" id="pix">
             <img src="assets/qr-code.png" alt="">
         </div>
 
-        <div class="cartao">
+        <div class="cartao dp-none" id="cartao">
             <form action="GET" class="cartao-form">
                 <input type="text" name="numero-cart" id="numero-cart" placeholder="Num. do cartão">
                 <input type="text" name="titular" id="titular" placeholder="Titular do cartão">
                 <input type="text" name="cpf" id="cpf" placeholder="CPF do titular">
 
-                <div class="inline">
+                <div class="row">
                     <input type="text" name="vencimento" id="vencimento" placeholder="Vencimento do cartão">
                     <input type="text" name="cvv" id="cvv" placeholder="CVV">
                 </div>
             </form>
         </div>
+
+        <div class="boleto dp-none" id="boleto">
+            <img src="assets/Interleaved2of5code.png" alt="">
+        </div>
+        
+        <div class="bttns">
+            <a href="confirmar.html" class="confirmar">Confirmar</a>
+            <a href="precos.html" class="cancelar">Cancelar</a>
+        </div>
     </div>
+
+    <div class="pre-footer">
+        <div class="logo">
+            <img src="assets/logo-icone-escuro.png" alt="Logo da AlfaTech">
+            <div class="logo-texto">
+                <h1>AlfaTech</h1>
+                <p class="color-branca">Soluções em hospedagem</p>
+            </div>
+        </div>
+
+        <p>&copy; AlfaTech - Soluções em hospedagem - Todos os direitos reservados</p>
+    </div>
+
+    <footer>
+        <p>Desenvolvido por <span>Mateus Rosa</span></p>
+    </footer>
+
+    <script>
+        jQuery(function($){
+            var now = "";
+            $(':radio').change(function(){
+                var test = document.querySelector('input[name="pagamento"]:checked').value;
+                
+                if (test == 'pix') {
+                    Remove(now);
+                    document.querySelector('#pix').classList.add('dp-block');
+                    document.querySelector('#pix').classList.remove('dp-none');
+                    now = "#pix";
+                } 
+                
+                if (test == 'cartao') {
+                    Remove(now);
+                    document.querySelector('#cartao').classList.add('dp-block');
+                    document.querySelector('#cartao').classList.remove('dp-none');
+                    now = '#cartao';
+                } 
+                
+                if (test == 'boleto') {
+                    Remove(now);
+                    document.querySelector('#boleto').classList.add('dp-block')
+                    document.querySelector('#boleto').classList.remove('dp-none')
+                    now = '#boleto';
+                }
+            });
+        });
+
+        function Remove(id) {
+            if (id != "") {
+                document.querySelector(id).classList.add('dp-none');
+                document.querySelector(id).classList.remove('dp-block');
+            }
+        };
+    </script>
 </body>
 </html>
